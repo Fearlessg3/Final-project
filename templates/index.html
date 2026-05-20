@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlockChain Attend - PWA E-Attendance</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="manifest" href="/manifest.json">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary-color: #10b981;
+            --danger-color: #ef4444;
+            --warning-color: #f59e0b;
+            --light-color: #f8fafc;
+            --dark-color: #1e293b;
+            --gray-color: #64748b;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        body {
+            background-color: #f1f5f9;
+            color: var(--dark-color);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: var(--box-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            color: var(--primary-color);
+            font-size: 24px;
+        }
+
+        .logo-text {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--dark-color);
+        }
+
+        .logo-text span {
+            color: var(--primary-color);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        /* Main Content */
+        .main-content {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 20px 0;
+            height: fit-content;
+        }
+
+        .sidebar nav ul {
+            list-style: none;
+        }
+
+        .sidebar nav ul li {
+            margin-bottom: 5px;
+        }
+
+        .sidebar nav ul li a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px 20px;
+            text-decoration: none;
+            color: var(--dark-color);
+            transition: all 0.3s;
+            border-left: 4px solid transparent;
+        }
+
+        .sidebar nav ul li a:hover, .sidebar nav ul li a.active {
+            background-color: #f1f5f9;
+            border-left-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .sidebar nav ul li a i {
+            width: 20px;
+            text-align: center;
+        }
+
+        /* Dashboard Cards */
+        .dashboard-section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--dark-color);
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 20px;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+        }
+
+        .card-icon.primary {
+            background-color: var(--primary-color);
+        }
+
+        .card-icon.secondary {
+            background-color: var(--secondary-color);
+        }
+
+        .card-icon.warning {
+            background-color: var(--warning-color);
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--gray-color);
+            margin-bottom: 5px;
+        }
+
+        .card-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--dark-color);
+        }
+
+        /* Table Styles */
+        .table-container {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background-color: #f8fafc;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+        }
+
+        th {
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        tbody tr {
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        tbody tr:hover {
+            background-color: #f8fafc;
+        }
+
+        .status {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .status.present {
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+
+        .status.absent {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+
+        .status.late {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+
+        /* Blockchain Visualization */
+        .blockchain-visualization {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .blocks-container {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            padding: 20px 0;
+        }
+
+        .block {
+            min-width: 200px;
+            border: 2px solid var(--primary-color);
+            border-radius: var(--border-radius);
+            padding: 15px;
+            background-color: #f0f9ff;
+            position: relative;
+        }
+
+        .block:not(:last-child)::after {
+            content: "→";
+            position: absolute;
+            right: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .block-header {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .block-data {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .block-hash {
+            font-family: monospace;
+            font-size: 12px;
+            color: var(--gray-color);
+            word-break: break-all;
+        }
+
+        /* Attendance Actions */
+        .attendance-actions {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: var(--border-radius);
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn-secondary {
+            background-color: #e2e8f0;
+            color: var(--dark-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: #cbd5e1;
+        }
+
+        .btn-success {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background-color: #0da271;
+        }
+
+        .btn-warning {
+            background-color: var(--warning-color);
+            color: white;
+        }
+
+        .btn-warning:hover {
+            background-color: #d97706;
+        }
+
+        /* QR Scanner */
+        .qr-scanner {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .qr-placeholder {
+            width: 250px;
+            height: 250px;
+            background-color: #f1f5f9;
+            margin: 20px auto;
+            border-radius: var(--border-radius);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-color);
+        }
+
+        .qr-placeholder i {
+            font-size: 80px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        /* PWA Installation */
+        .pwa-install {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 15px;
+            display: none;
+            align-items: center;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .pwa-install.show {
+            display: flex;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cards-container {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-link"></i>
+                    </div>
+                    <div class="logo-text">BlockChain<span>Attend</span></div>
+                </div>
+                <div class="user-info">
+                    <div class="avatar" id="user-avatar">JD</div>
+                    <div>
+                        <div id="user-name">John Doe</div>
+                        <div id="user-role" style="font-size: 14px; color: var(--gray-color);">Teacher</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="main-content">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <nav>
+                    <ul>
+                        <li><a href="#" class="active" id="dashboard-link"><i class="fas fa-home"></i> Dashboard</a></li>
+                        <li><a href="#" id="attendance-link"><i class="fas fa-calendar-check"></i> Mark Attendance</a></li>
+                        <li><a href="#" id="records-link"><i class="fas fa-history"></i> Attendance Records</a></li>
+                        <li><a href="#" id="blockchain-link"><i class="fas fa-cube"></i> Blockchain Explorer</a></li>
+                        <li><a href="#" id="students-link"><i class="fas fa-users"></i> Students</a></li>
+                        <li><a href="#" id="classes-link"><i class="fas fa-chalkboard"></i> Classes</a></li>
+                        <li><a href="#" id="qr-link"><i class="fas fa-qrcode"></i> QR Code Scanner</a></li>
+                        <li><a href="#" id="settings-link"><i class="fas fa-cog"></i> Settings</a></li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <!-- Main Dashboard -->
+            <main id="main-content">
+                <!-- Dashboard Section -->
+                <section id="dashboard-section" class="dashboard-section">
+                    <h2 class="section-title">Dashboard</h2>
+                    
+                    <!-- Stats Cards -->
+                    <div class="cards-container">
+                        <div class="card">
+                            <div class="card-header">
+                                <div>
+                                    <div class="card-title">Total Students</div>
+                                    <div class="card-value">42</div>
+                                </div>
+                                <div class="card-icon primary">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-header">
+                                <div>
+                                    <div class="card-title">Today's Attendance</div>
+                                    <div class="card-value">89%</div>
+                                </div>
+                                <div class="card-icon secondary">
+                                    <i class="fas fa-calendar-check"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-header">
+                                <div>
+                                    <div class="card-title">Classes Today</div>
+                                    <div class="card-value">5</div>
+                                </div>
+                                <div class="card-icon warning">
+                                    <i class="fas fa-chalkboard"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-header">
+                                <div>
+                                    <div class="card-title">Blockchain Blocks</div>
+                                    <div class="card-value">124</div>
+                                </div>
+                                <div class="card-icon primary">
+                                    <i class="fas fa-cube"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Recent Attendance Table -->
+                <section class="dashboard-section">
+                    <h2 class="section-title">Recent Attendance</h2>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Student ID</th>
+                                    <th>Student Name</th>
+                                    <th>Class</th>
+                                    <th>Date & Time</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="attendance-table-body">
+                                <!-- Attendance records will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Blockchain Visualization -->
+                <section class="dashboard-section">
+                    <h2 class="section-title">Latest Blockchain Blocks</h2>
+                    <div class="blockchain-visualization">
+                        <div class="blocks-container" id="blocks-container">
+                            <!-- Blockchain blocks will be loaded here -->
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- PWA Install Prompt -->
+    <div class="pwa-install" id="pwa-install">
+        <div>
+            <strong>Install BlockChainAttend</strong>
+            <div style="font-size: 14px; color: var(--gray-color);">Install app for better experience</div>
+        </div>
+        <button class="btn btn-primary" id="install-btn">Install</button>
+        <button class="btn btn-secondary" id="dismiss-btn">Dismiss</button>
+    </div>
+
+    <!-- HTMX -->
+    <script src="https://unpkg.com/htmx.org@1.9.6"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+        // Check if service workers are supported
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').then(registration => {
+                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                }).catch(err => {
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+            });
+        }
+        
+        // PWA Install Prompt
+        let deferredPrompt;
+        const installPrompt = document.getElementById('pwa-install');
+        const installBtn = document.getElementById('install-btn');
+        const dismissBtn = document.getElementById('dismiss-btn');
+        
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // Prevent Chrome 67 and earlier from automatically showing the prompt
+            e.preventDefault();
+            // Stash the event so it can be triggered later
+            deferredPrompt = e;
+            // Show the install prompt
+            setTimeout(() => {
+                installPrompt.classList.add('show');
+            }, 3000);
+        });
+        
+        installBtn.addEventListener('click', () => {
+            // Hide the install prompt
+            installPrompt.classList.remove('show');
+            // Show the install prompt
+            deferredPrompt.prompt();
+            // Wait for the user to respond to the prompt
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('User accepted the install prompt');
+                } else {
+                    console.log('User dismissed the install prompt');
+                }
+                deferredPrompt = null;
+            });
+        });
+        
+        dismissBtn.addEventListener('click', () => {
+            installPrompt.classList.remove('show');
+        });
+        
+        // Simulate HTMX functionality for the demo
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load initial attendance data
+            loadAttendanceData();
+            
+            // Load blockchain blocks
+            loadBlockchainBlocks();
+            
+            // Navigation handling
+            setupNavigation();
+            
+            // Simulate user role toggle
+            document.getElementById('user-avatar').addEventListener('click', function() {
+                const role = document.getElementById('user-role');
+                const name = document.getElementById('user-name');
+                const avatar = document.getElementById('user-avatar');
+                
+                if (role.textContent === 'Teacher') {
+                    role.textContent = 'Student';
+                    name.textContent = 'Alice Johnson';
+                    avatar.textContent = 'AJ';
+                } else {
+                    role.textContent = 'Teacher';
+                    name.textContent = 'John Doe';
+                    avatar.textContent = 'JD';
+                }
+            });
+        });
+        
+        function loadAttendanceData() {
+            const attendanceData = [
+                { id: 'S001', name: 'Alice Johnson', class: 'Mathematics', datetime: '2023-10-15 09:00', status: 'present' },
+                { id: 'S002', name: 'Bob Smith', class: 'Mathematics', datetime: '2023-10-15 09:05', status: 'late' },
+                { id: 'S003', name: 'Carol Davis', class: 'Physics', datetime: '2023-10-15 10:30', status: 'present' },
+                { id: 'S004', name: 'David Wilson', class: 'Physics', datetime: '2023-10-15 10:30', status: 'absent' },
+                { id: 'S005', name: 'Eva Brown', class: 'Chemistry', datetime: '2023-10-15 13:00', status: 'present' }
+            ];
+            
+            const tableBody = document.getElementById('attendance-table-body');
+            tableBody.innerHTML = '';
+            
+            attendanceData.forEach(record => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${record.id}</td>
+                    <td>${record.name}</td>
+                    <td>${record.class}</td>
+                    <td>${record.datetime}</td>
+                    <td><span class="status ${record.status}">${record.status.charAt(0).toUpperCase() + record.status.slice(1)}</span></td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+        
+        function loadBlockchainBlocks() {
+            const blocks = [
+                { id: 123, timestamp: '2023-10-15 10:30:45', data: 'Attendance: Alice Johnson - Physics', hash: 'a1b2c3d4e5f6...' },
+                { id: 122, timestamp: '2023-10-15 10:25:12', data: 'Attendance: Bob Smith - Mathematics', hash: 'f6e5d4c3b2a1...' },
+                { id: 121, timestamp: '2023-10-15 09:05:33', data: 'Attendance: Carol Davis - Mathematics', hash: '1a2b3c4d5e6f...' },
+                { id: 120, timestamp: '2023-10-15 09:00:18', data: 'Attendance: David Wilson - Physics', hash: '6f5e4d3c2b1a...' }
+            ];
+            
+            const blocksContainer = document.getElementById('blocks-container');
+            blocksContainer.innerHTML = '';
+            
+            blocks.forEach(block => {
+                const blockElement = document.createElement('div');
+                blockElement.className = 'block';
+                blockElement.innerHTML = `
+                    <div class="block-header">
+                        <span>Block #${block.id}</span>
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <div class="block-data">
+                        <div><strong>Timestamp:</strong> ${block.timestamp}</div>
+                        <div><strong>Data:</strong> ${block.data}</div>
+                    </div>
+                    <div class="block-hash">Hash: ${block.hash}</div>
+                `;
+                blocksContainer.appendChild(blockElement);
+            });
+        }
+        
+        function setupNavigation() {
+            // Get all navigation links
+            const navLinks = document.querySelectorAll('.sidebar nav ul li a');
+            const mainContent = document.getElementById('main-content');
+            
+            // Add click event listeners to all navigation links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all links
+                    navLinks.forEach(item => item.classList.remove('active'));
+                    
+                    // Add active class to clicked link
+                    this.classList.add('active');
+                    
+                    // Get the page ID from the link ID
+                    const pageId = this.id.replace('-link', '');
+                    
+                    // Load the corresponding page content
+                    loadPageContent(pageId);
+                });
+            });
+            
+            // Function to load page content
+            function loadPageContent(pageId) {
+                let content = '';
+                
+                switch(pageId) {
+                    case 'dashboard':
+                        content = `
+                            <section id="dashboard-section" class="dashboard-section">
+                                <h2 class="section-title">Dashboard</h2>
+                                <div class="cards-container">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <div>
+                                                <div class="card-title">Total Students</div>
+                                                <div class="card-value">42</div>
+                                            </div>
+                                            <div class="card-icon primary">
+                                                <i class="fas fa-users"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <div>
+                                                <div class="card-title">Today's Attendance</div>
+                                                <div class="card-value">89%</div>
+                                            </div>
+                                            <div class="card-icon secondary">
+                                                <i class="fas fa-calendar-check"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <div>
+                                                <div class="card-title">Classes Today</div>
+                                                <div class="card-value">5</div>
+                                            </div>
+                                            <div class="card-icon warning">
+                                                <i class="fas fa-chalkboard"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <div>
+                                                <div class="card-title">Blockchain Blocks</div>
+                                                <div class="card-value">124</div>
+                                            </div>
+                                            <div class="card-icon primary">
+                                                <i class="fas fa-cube"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="dashboard-section">
+                                <h2 class="section-title">Recent Attendance</h2>
+                                <div class="table-container">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Student ID</th>
+                                                <th>Student Name</th>
+                                                <th>Class</th>
+                                                <th>Date & Time</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="attendance-table-body">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </section>
+                            <section class="dashboard-section">
+                                <h2 class="section-title">Latest Blockchain Blocks</h2>
+                                <div class="blockchain-visualization">
+                                    <div class="blocks-container" id="blocks-container">
+                                    </div>
+                                </div>
+                            </section>
+                        `;
+                        break;
+                        
+                    case 'attendance':
+                        content = `
+                            <section class="dashboard-section">
+                                <h2 class="section-title">Mark Attendance</h2>
+                                <div class="attendance-actions">
+                                    <h3 style="margin-bottom: 15px;">Select Class</h3>
+                                    <div class="action-buttons">
+                                        <button class="btn btn-primary"><i class="fas fa-chalkboard"></i> Mathematics</button>
+                                        <button class="btn btn-primary"><i class="fas fa-atom"></i> Physics</button>
+                                        <button class="btn btn-primary"><i class="fas fa-flask"></i> Chemistry</button>
+                                        <button class="btn btn-primary"><i class="fas fa-code"></i> Computer Science</button>
+                                    </div>
+                                </div>
+                                
+                                <div class="qr-scanner">
+                                    <h3 style="margin-bottom: 15px;">Scan QR Code</h3>
+                                    <p style="color: var(--gray-color); margin-bottom: 20px;">Scan student QR code to mark attendance</p>
+                                    <div class="qr-placeholder">
+                                        <i class="fas fa-qrcode"></i>
+                                        <p>QR Scanner Placeholder</p>
+                                    </div>
+                                    <button class="btn btn-success" style="margin-top: 20px;"><i class="fas fa-camera"></i> Start Scanner</button>
+                                </div>
+                            </section>
+                        `;
+                        break;
+                        
+                    case 'records':
+                        content = `
+                            <section class="dashboard-section">
+                                <h2 class="section-title">Attendance Records</h2>
+                                <div class="attendance-actions" style="margin-bottom: 20px;">
+                                    <div class="action-buttons">
+                                        <button class="btn btn-primary"><i class="fas fa-calendar"></i> Today</button>
+                                        <button class="btn btn-secondary"><i class="fas fa-calendar-week"></i> This Week</button>
+                                        <button class="btn btn-secondary"><i class="fas fa-calendar-alt"></i> This Month</button>
+                                        <button class="btn btn-secondary"><i class="fas fa-filter"></i> Filter</button>
+                                    </div>
+                                </div>
+                                
+                                <div class="table-container">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Class</th>
+                                                <th>Students Present</th>
+                                                <th>Students Absent</th>
+                                                <th>Attendance Rate</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>2023-10-15</td>
+                                                <td>Mathematics</td>
+                                                <td>24</td>
+                                                <td>3</td>
+                                                <td>89%</td>
+                                                <td><button class="btn btn-secondary" style="padding: 5px 10px; font-size: 14px;">View Details</button></td>
+                                            </tr>
+                                            <tr>
+                                                <td>2023-10-14</td>
+                                                <td>Physics</td>
+                                                <td>22</td>
+                                                <td>5</td>
+                                                <td>81%</td>
+                                                <td><button class="btn btn-secondary" style="padding: 5px 10px; font-size: 14px;">View Details</button></td>
+                                            </tr>
+                                            <tr>
+                                                <td>2023-10-13</td>
+                                                <td>Chemistry</td>
+                                                <td>25</td>
+                                                <td>2</td>
+                                                <td>93%</td>
+                                                <td><button class="btn btn-secondary" style="padding: 5px 10px; font-size: 14px;">View Details</button></td>
+                                            </tr>
+                                            <tr>
+                                                <td>2023-10-12</td>
+                                                <td>Computer Science</td>
+                                                <td>20</td>
+                                                <td>4</td>
+                                                <td>83%</td>
+                                                <td><button class="btn btn-secondary" style="padding: 5px 10px; font-size: 14px;">View Details</button></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </section>
+                        `;
+                        break;
+                        
+                    case 'blockchain':
+                        content = `
+                            <section class="dashboard-section">
+                                <h2 class="section-title">Blockchain Explorer</h2>
+                                <div class="attendance-actions" style="margin-bottom: 20px;">
+                                    <div class="action-buttons">
+                                        <button class="btn btn-primary"><i class="fas fa-sync-alt"></i> Refresh</button>
+                                        <button class="btn btn-secondary"><i class="fas fa-search"></i> Search Block</button>
+                                        <button class="btn btn-success"><i class="fas fa-plus"></i> Add Test Block</button>
+                                    </div>
+                                </div>
+                                
+                                <div class="blockchain-visualization">
+                                    <div class="blocks-container" id="explorer-blocks-container">
+                                    </div>
+                                </div>
+                                
+                                <div class="table-container" style="margin-top: 30px;">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Block #</th>
+                                                <th>Timestamp</th>
+                                                <th>Data</th>
+                                                <th>Previous Hash</th>
+                                                <th>Current Hash</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="blockchain-table-body">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </section>
+                        `;
+                        
+                        // Load blockchain data for the explorer
+                        setTimeout(() => {
+                            loadBlockchainExplorer();
+                        }, 100);
+                        break;
+                        
+                    default:
+                        content = `<section class="dashboard-section"><h2 class="section-title">${pageId.charAt(0).toUpperCase() + pageId.slice(1)} Page</h2><p>This is the ${pageId} page content.</p></section>`;
+                }
+                
+                // Update the main content
+                mainContent.innerHTML = content;
+                
+                // If we're loading the dashboard, also load the attendance data and blocks
+                if (pageId === 'dashboard') {
+                    loadAttendanceData();
+                    loadBlockchainBlocks();
+                }
+            }
+            
+            // Load blockchain explorer data
+            function loadBlockchainExplorer() {
+                const blocks = [
+                    { id: 123, timestamp: '2023-10-15 10:30:45', data: 'Attendance: Alice Johnson - Physics', prevHash: 'f6e5d4c3b2a1...', hash: 'a1b2c3d4e5f6...' },
+                    { id: 122, timestamp: '2023-10-15 10:25:12', data: 'Attendance: Bob Smith - Mathematics', prevHash: '1a2b3c4d5e6f...', hash: 'f6e5d4c3b2a1...' },
+                    { id: 121, timestamp: '2023-10-15 09:05:33', data: 'Attendance: Carol Davis - Mathematics', prevHash: '6f5e4d3c2b1a...', hash: '1a2b3c4d5e6f...' },
+                    { id: 120, timestamp: '2023-10-15 09:00:18', data: 'Attendance: David Wilson - Physics', prevHash: 'abc123def456...', hash: '6f5e4d3c2b1a...' }
+                ];
+                
+                const explorerBlocksContainer = document.getElementById('explorer-blocks-container');
+                if (explorerBlocksContainer) {
+                    explorerBlocksContainer.innerHTML = '';
+                    
+                    blocks.forEach(block => {
+                        const blockElement = document.createElement('div');
+                        blockElement.className = 'block';
+                        blockElement.innerHTML = `
+                            <div class="block-header">
+                                <span>Block #${block.id}</span>
+                                <i class="fas fa-cube"></i>
+                            </div>
+                            <div class="block-data">
+                                <div><strong>Timestamp:</strong> ${block.timestamp}</div>
+                                <div><strong>Data:</strong> ${block.data}</div>
+                            </div>
+                            <div class="block-hash">Hash: ${block.hash}</div>
+                        `;
+                        explorerBlocksContainer.appendChild(blockElement);
+                    });
+                }
+                
+                const blockchainTableBody = document.getElementById('blockchain-table-body');
+                if (blockchainTableBody) {
+                    blockchainTableBody.innerHTML = '';
+                    
+                    blocks.forEach(block => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${block.id}</td>
+                            <td>${block.timestamp}</td>
+                            <td>${block.data}</td>
+                            <td><code>${block.prevHash}</code></td>
+                            <td><code>${block.hash}</code></td>
+                        `;
+                        blockchainTableBody.appendChild(row);
+                    });
+                }
+            }
+        }
+    </script>
+</body>
+</html>

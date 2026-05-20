@@ -1,0 +1,337 @@
+{
+	"year_One": {
+		"first_semester": [
+			"MTH101": {
+				"course_code": "MTH 101",
+				"title": "Elementary Mathematics I",
+			},
+			"COS101": {
+				"course_code": "COS 101",
+				"title": "Introduction to Computing Sciences",
+			},
+			"PHY101": {
+				"course_code": "PHY 101",
+				"title": "General Physics I",
+			},
+			"PHY107": {
+				"corse_code": "PHY 107",
+				"title": "General Physics Practical I",
+			},
+			"GST111": {
+				"corse_code": "GST 111",
+				"title": "Communication in English",
+			},
+			"STA111": {
+				"corse_code": "STA 111",
+				"title": "Descriptive Statistics",
+			},
+			"LASUSTECH-LIB101": {
+				"corse_code": "LASUSTECH-LIB 101",
+				"title": "Use of Library, Study Skills and ICT",
+			},
+			"LASUSTECH-CSC103": {
+				"corse_code": "LASUSTECH-CSC 103",
+				"title": "Internet Technology",
+			},
+			"LASUSTECH-YOR101": {
+				"corse_code": "LASUSTECH-YOR 101",
+				"title": "Communication in Yoruba 1",
+			},
+			"CHM101": {
+				"corse_code": "CHM 101",
+				"title": "General Chemistry I",
+			},
+			"CHM107": {
+				"corse_code": "CHM 107",
+				"title": "General Chemistry Practical I",
+			},
+			"BIO101": {
+				"corse_code": "BIO 101",
+				"title": "General Biology I",
+			},
+			"BIO107": {
+				"corse_code": "BIO 107",
+				"title": "General Biology Practical I",
+			},
+		],
+		"second_semester": [
+			"MTH102": {
+				"course_code": "MTH 102",
+				"title": "Elementary Mathematics II (Calculus)",
+			},
+			"COS102": {
+				"course_code": "COS 102",
+				"title": "Problem Solving",
+			},
+			"PHY102": {
+				"course_code": "PHY 102",
+				"title": "General Physics II",
+			},
+			"PHY108": {
+				"course_code": "PHY 108",
+				"title": "General Physics Practical II",
+			},
+			"GST112": {
+				"course_code": "GST 112",
+				"title": "Nigerian Peoples and Culture",
+			},
+			"LASUSTECH-CSC106": {
+				"course_code": "LASUSTECH-CSC 106",
+				"title": "Website Design and Management",
+			},
+			"LASUSTECH-FRE102": {
+				"course_code": "LASUSTECH-FRE 102",
+				"title": "French Language for Science Student",
+			},
+			"LASUSTECH-YOR102": {
+				"course_code": "LASUSTECH-YOR 102",
+				"title": "Communication in Yoruba 2",
+			},
+			"CHM102": {
+				"course_code": "CHM 102",
+				"title": "General Chemistry II",
+			},
+			"CHM108": {
+				"course_code": "CHM 108",
+				"title": "General Chemistry Practical II",
+			},
+			"CHM108": {
+				"course_code": "CHM 108",
+				"title": "General Chemistry Practical II",
+			},
+			"FRS102": {
+				"course_code": "FRS 102",
+				"title": "Introductory Forensic Science",
+			},
+			"STA112": {
+				"course_code": "STA 112",
+				"title": "Probability I",
+			},
+		]
+	},
+	"year_Two": {
+		"first_semester": [
+			"COS201": {
+				"course_code": "COS 201",
+				"title": "Computer Programming I",
+			},
+			"CSC203": {
+				"course_code": "CSC 203",
+				"title": "Discrete Structures",
+			},
+			"MTH201": {
+				"course_code": "MTH 201",
+				"title": "Mathematical Method I",
+			},
+			"ENT211": {
+				"course_code": "ENT 211",
+				"title": "Entrepreneurship and Innovation",
+			},
+			"IFT211": {
+				"course_code": "IFT 211",
+				"title": "Digital Logic Design",
+			},
+			"SEN201": {
+				"course_code": "SEN 201",
+				"title": "Introduction to Software Engineering",
+			},
+			"CYB201": {
+				"course_code": "CYB 201",
+				"title": "Introduction to Cybersecurity and Strategy",
+			},
+			"ICT201": {
+				"course_code": "ICT 201",
+				"title": "Introduction to Information and Communication Technology",
+			},
+			"LASUSTECH-AGR215": {
+				"course_code": "LASUSTECH-AGR 215",
+				"title": "General Agricultural Practice",
+			},
+		],
+		"second_semester": [
+			"GST212": {
+				"course_code": "GST 212",
+				"title": "Philosophy, Logic & Human Existence",
+			},
+			"COS202": {
+				"course_code": "COS 202",
+				"title": "Computer Programming II",
+			},
+			"MTH202": {
+				"course_code": "MTH 202",
+				"title": "Elementary Differential Equations",
+			},
+			"IFT212": {
+				"course_code": "IFT 212",
+				"title": "Computer Architecture and Organisation",
+			},
+			"INS204": {
+				"course_code": "INS 204",
+				"title": "Systems Analysis and Design",
+			},
+			"PHY202": {
+				"course_code": "PHY 202",
+				"title": "Electric Circuits and Electronics",
+			},
+			"CSC299": {
+				"course_code": "CSC 299",
+				"title": "SIWES I",
+			},
+			"LASUSTECH-GET230": {
+				"course_code": "LASUSTECH-GET 230",
+				"title": "General Workshop Practice",
+			},
+			"LASUSTECH-CSC206": {
+				"course_code": "LASUSTECH-CSC 206",
+				"title": " Web Server Administration",
+			},
+		],
+	"year_Three": {
+		"first_semester": [
+			"CSC301": {
+				"course_code": "CSC 301",
+				"title": "Data Structures",
+			},
+			"CSC309": {
+				"course_code": "CSC 309",
+				"title": "Artificial Intelligence",
+			},
+			"CSC399": {
+				"course_code": "CSC 399",
+				"title": "SIWES II",
+			},
+			"ICT305": {
+				"course_code": "ICT 305",
+				"title": "Data Communication System and Networks",
+			},
+			"LASUSTECH-CSC307": {
+				"course_code": "LASUSTECH-CSC 307",
+				"title": "Cloud Computing",
+			},
+			"LASUSTECH-CSC311": {
+				"course_code": "LASUSTECH-CSC 311",
+				"title": "Information Storage Management",
+			},
+			"SEN301": {
+				"course_code": "SEN 301",
+				"title": "Object-Oriented Analysis and Design",
+			},
+			"ICT301": {
+				"course_code": "ICT 301",
+				"title": "Satellite Communication",
+			},
+			"CYB301": 
+				"course_code": "CYB 301",
+				"title": "Cryptography Techniques, Algorithms and Algorithms",
+			},
+		],
+		"second_semester": [
+			"GST 312":{
+				"course_code": "GST 312",
+				"title": "Peace and Conflict Resolution",
+			},
+			"ENT312":{
+				"course_code": "ENT 312",
+				"title": "Venture Creation",
+			},
+			"CSC308":{
+				"course_code": "CSC 308",
+				"title": "Operating Systems",
+			},
+			"CSC322":{
+				"course_code": "CSC 322",
+				"title": "omputer Science Innovation and New Technologies",
+			},
+			"DTS304":{
+				"course_code": "DTS 304",
+				"title": "Data Management I",
+			},
+			"LASUSTECH-CSC304":{
+				"course_code": "LASUSTECH-CSC 304",
+				"title": "Computer System Security",
+			},
+			"LASUSTECH-CSC302":{
+				"course_code": "LASUSTECH-CSC 302",
+				"title": "Survey of Programming Languages",
+			},
+			"LASUSTECH-CSC310":{
+				"course_code": "LASUSTECH-CSC 310",
+				"title": "Machine Learning",
+			},
+		],
+	},
+	"year_Four": {
+		"first_semester" [
+			"CSC401":{
+				"course_code": "CSC 401",
+				"title": "Algorithms and Complexity Analysis",
+			},
+			"COS409":{
+				"course_code": "COS 409",
+				"title": "Research Methodology and Technical Report Writing",
+			},
+			"INS401":{
+				"course_code": "INS 401",
+				"title": "Project Management",
+			},
+			"CSC497":{
+				"course_code": "CSC 497",
+				"title": "Final Year Project I",
+			},
+			"LASUSTECH-CSC405":{
+				"course_code": "LASUSTECH-CSC 405",
+				"title": "Operating System Engineering",
+			},
+			"LASUSTECH-CSC403":{
+				"course_code": "LASUSTECH-CSC 403",
+				"title": "Blockchain and its Application",
+			},
+			"LASUSTECH-CSC435":{
+				"course_code": "LASUSTECH-CSC 435",
+				"title": "Computer Graphics and Visualization",
+			},
+			"LASUSTECH-CSC437":{
+				"course_code": "LASUSTECH-CSC 437",
+				"title": "Data Mining and Big Data Analytics",
+			},
+		],
+		"second_semester" [
+			"CSC402":{
+				"course_code": "CSC 402",
+				"title": "Ethics and Legal Issues in Computer Science",
+			},
+			"CSC498":{
+				"course_code": "CSC 498",
+				"title": "Final Year Project II",
+			},
+			"ICT418":{
+				"course_code": "ICT 418",
+				"title": "Design & Installation of Electrical & ICT Equipment",
+			},
+			"IFT442":{
+				"course_code": "IFT 442",
+				"title": "Wireless Communications and Networking",
+			},
+			"LASUSTECH-CSC442":{
+				"course_code": "LASUSTECH-CSC 442",
+				"title": "Mobile Application Development",
+			},
+			"LASUSTECH-CSC422":{
+				"course_code": "LASUSTECH-CSC 422",
+				"title": "Human-Computer Interaction",
+			},
+			"LASUSTECH-CSC454":{
+				"course_code": "LASUSTECH-CSC 454",
+				"title": "Semantic Web Computing",
+			},
+			"LASUSTECH-CSC406":{
+				"course_code": "LASUSTECH-CSC 406",
+				"title": "Fault Tolerance Computing",
+			},
+			"LASUSTECH-CSC408":{
+				"course_code": "LASUSTECH-CSC 408",
+				"title": "Game Design",
+			},
+		],
+	},	
+},
